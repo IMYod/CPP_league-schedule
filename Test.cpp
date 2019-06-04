@@ -170,9 +170,9 @@ int main() {
 	.CHECK_EQUAL(total_lose, total_games);
 
 	//basic test for top and bottom functions
-	auto up_half = test_league.top(size/2);
+	/*auto up_half = test_league.top(size/2);
 	auto down_half = test_league.bottom(size/2);
-	/*for (Team up_team : up_half)
+	for (Team up_team : up_half)
 		for (Team down_team : down_half){
 			testcase.CHECK_EQUAL(up_team.name != down_team.name, true)
 			.CHECK_EQUAL(up_team < down_team, false);
