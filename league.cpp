@@ -1,17 +1,11 @@
 #include "league.hpp"
 #include <set>
+#include <iterator>
 
 using namespace ariel;
 using std::vector;
 
-league::league(vector<Team>::iterator begin, vector<Team>::iterator end, uint other_teams)
-{
-	for (;begin != end; ++begin)
-		table.push_back(*begin);
-	number_of_teams = other_teams + table.size();
-}
-
-void league::set_results_to_table(){
+void ariel::league::set_results_to_table(){
 	;//TODO
 }
 
@@ -21,11 +15,24 @@ statistics functions
 
 
 //for compiling
-std::vector<Team> league::top(uint num) const {
-	return std::vector<Team>(table.begin(), table.begin() + num);
+vector<Team> league::top(uint num) const {
+	if (num > table.size())
+		return vector<Team>(table.begin(), table.end());
+
+	auto it = table.begin();
+	std::advance(it, num);
+	return std::vector<Team>(table.begin(), it) ;
 }
 
 //for compiling
-std::vector<Team> league::bottom(uint num) const{
-	return std::vector<Team>(table.end() - num, table.end());
+vector<Team> league::bottom(uint num) const{
+	if (num > table.size())
+		return vector<Team>(table.begin(), table.end());
+
+	auto it = table.begin();
+	std::advance(it, table.size()-num);
+	return vector<Team>(it, table.end()) ;
 }
+
+
+

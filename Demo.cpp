@@ -12,28 +12,29 @@ int main() {
 	
 
 	league ariel_league(12); //league with 12 teams
-	ariel_league.create_league();
+	ariel_league.create();
 	ariel_league.play();
 
 	/*cout << "The winner is " << ariel_league.top(1) << endl;
 	cout << "This groups continued to the final four: " << ariel_league.top(4) << endl;
 	cout << "This groups have been relegated: " << ariel_league.bottom(2) << endl;*/
 
-	int longest_winnig = ariel_league.longest_winnig();
+	int longest_winnig = ariel_league.longest_winnigs();
 	cout << "The longest winnig streak was " << longest_winnig << endl;
-	cout << "The longest loss sequence was " << ariel_league.longest_loss() << endl;
+	cout << "The longest loss sequence was " << ariel_league.longest_losses() << endl;
 
 	cout << "There are " << ariel_league.count_positive() << " teams with positive total points" << endl;
 
 
 	//Let play the final four!
-/*	auto top4 = ariel_league.top(4);
+	auto top4 = ariel_league.top(4);
 
 	league final4(top4.begin(), top4.end());
-	final4.create_league();
-	final4.play();*/
+	final4.create();
+	final4.play();
 	
 	//cout << "The winner of the final four is: " << final4.top(1) << endl;
+
 
 	//League with some specipic teams
 	Team t1 = Team(0.85, "Toronto Raptors");	

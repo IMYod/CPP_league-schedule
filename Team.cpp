@@ -37,3 +37,7 @@ bool Team::operator< (const Team &other) const{
 		return false;
 	return (total_points < other.total_points);
 }
+
+std::ostream& operator <<(std::ostream& os, const Team& team) {
+	return os << team.name;
+}

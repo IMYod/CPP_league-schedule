@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include <iostream>
 
 namespace ariel{
 
@@ -16,6 +17,8 @@ struct Team{
 	/*For compiling*/
 	bool operator< (const Team &other) const;
 	Team(double _skills, std::string _name): skills(_skills), name(_name) {;}
+
+	friend std::ostream& operator <<(std::ostream&, const Team&);
 };
 
 }

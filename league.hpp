@@ -1,27 +1,23 @@
 #pragma once
 
 #include<vector>
+#include<set>
 #include "schedule.hpp"
+#include <iostream>
+
 
 namespace ariel{
 
 
 class league : public schedule{
-	int number_of_teams;
-	std::vector<Team> table; //sorted by: 1. wins. 2. total points.
+	std::set<Team> table; //sorted by: 1. wins. 2. total points.
 
 	public:
 
-	league(uint number) : number_of_teams(number) {;}
+	league(uint number) : schedule(number) {;}
 
-	league(std::vector<ariel::Team>::iterator begin, std::vector<ariel::Team>::iterator end, uint more_teams=0);
-
-	void create_league(){
-		//If we should init new teams, it will be done in this loop:
-		for (int i=table.size(); i<number_of_teams; i++)
-			//TODO
-		create(table);
-	}
+	league(std::vector<ariel::Team>::iterator begin, std::vector<ariel::Team>::iterator end, uint another_teams=0):
+	schedule(begin, end, another_teams) {;}
 
 	void play() {
 		play_all_games();
@@ -31,7 +27,7 @@ class league : public schedule{
 	void set_results_to_table();
 
 	int size() const {return number_of_teams;}
-	const std::vector<Team>& _table() const {return table;}
+	const std::set<Team>& _table() const {return table;}
 
 	/*
 	statistics functions
@@ -51,3 +47,16 @@ class league : public schedule{
 };
 
 }
+
+/*std::ostream& operator<<(std::ostream& out, const std::vector<ariel::Team> & a)
+{
+    out << "[ ";
+
+    for(auto x : a)
+    {
+        out << x << ", ";
+    }
+
+    out << "]" << std::endl;
+    return out;
+}*/

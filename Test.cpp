@@ -134,8 +134,7 @@ int main() {
 	team_v2.push_back(c_team);
 	team_v2.push_back(d_team);
 
-	schedule test_schedule;
-	testcase.CHECK_OK(test_schedule.create(team_v2));
+	schedule test_schedule(team_v2.begin(), team_v2.end());
 	for (std::vector<game> round : test_schedule.all_games)
 		testcase.CHECK_EQUAL(is_valid_round(round), true);
 
@@ -149,7 +148,7 @@ int main() {
 	const int size = 4; //league with 4 teams
 
 	league test_league(size);
-	test_league.create_league();
+	test_league.create();
 
 	//test schedule as above
 	for (std::vector<game> round : test_league.all_games)
@@ -170,15 +169,16 @@ int main() {
 	.CHECK_EQUAL(total_lose, total_games);
 
 	//basic test for top and bottom functions
-	/*auto up_half = test_league.top(size/2);
+	auto up_half = test_league.top(size/2);
 	auto down_half = test_league.bottom(size/2);
 	for (Team up_team : up_half)
 		for (Team down_team : down_half){
 			testcase.CHECK_EQUAL(up_team.name != down_team.name, true)
 			.CHECK_EQUAL(up_team < down_team, false);
 		}
-	*/
+	
 
+	testcase.setname("Test my mini league");
 	league test_league2(4);
 	test_league2.all_teams.push_back(a_team);
 	test_league2.all_teams.push_back(b_team);
@@ -231,6 +231,17 @@ int main() {
 	testcase.CHECK_EQUAL(test_league2.longest_winnigs(), 3) //Team d in rounds 2-4
 	.CHECK_EQUAL(test_league2.longest_losses(), 3) //Team c in rounds 2-4
 	.CHECK_EQUAL(test_league2.count_positive(), 2); //Teams a,c
+
+	
+
+	auto up_half2 = test_league2.top(size/2);
+	auto down_half2 = test_league2.bottom(size/2);
+	for (Team up_team : up_half2)
+		for (Team down_team : down_half2){
+			testcase.CHECK_EQUAL(up_team.name != down_team.name, true)
+			.CHECK_EQUAL(up_team < down_team, false);
+		}
+	
 		
  
     grade = testcase.grade();
