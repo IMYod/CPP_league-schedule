@@ -47,16 +47,3 @@ class league : public schedule{
 };
 
 }
-
-/*std::ostream& operator<<(std::ostream& out, const std::vector<ariel::Team> & a)
-{
-    out << "[ ";
-
-    for(auto x : a)
-    {
-        out << x << ", ";
-    }
-
-    out << "]" << std::endl;
-    return out;
-}*/

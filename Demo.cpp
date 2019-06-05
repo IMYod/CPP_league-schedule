@@ -33,7 +33,7 @@ int main() {
 	final4.create();
 	final4.play();
 	
-	//cout << "The winner of the final four is: " << final4.top(1) << endl;
+	cout << "The winner of the final four is: " << final4.top(1) << endl;
 
 
 	//League with some specipic teams

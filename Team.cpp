@@ -2,11 +2,11 @@
 
 #include <stdlib.h> //for rand
 #include <sstream> //for ostringstream
-#include <vector>
 #include <string>
 
+
 using namespace ariel;
-using std::vector, std::string;
+using std::vector, std::string, std::ostream;
 
 //generate at least 20 different team names
 struct team_names_generator {
@@ -38,6 +38,6 @@ bool Team::operator< (const Team &other) const{
 	return (total_points < other.total_points);
 }
 
-std::ostream& operator <<(std::ostream& os, const Team& team) {
+ostream& operator <<(ostream& os, const Team& team) {
 	return os << team.name;
 }

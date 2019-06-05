@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include <vector>
 #include <iostream>
 
 namespace ariel{
@@ -20,5 +21,19 @@ struct Team{
 
 	friend std::ostream& operator <<(std::ostream&, const Team&);
 };
+
+
+std::ostream& operator<<(std::ostream& out, const std::vector<Team> & all_elements)
+{
+    out << "[";
+
+    for(auto element :  all_elements)
+    {
+        out <<  element << ", ";
+    }
+
+    out << "]" << std::endl;
+    return out;
+}
 
 }
