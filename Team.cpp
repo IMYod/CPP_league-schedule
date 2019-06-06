@@ -8,7 +8,8 @@
 using namespace ariel;
 using std::vector, std::string, std::ostream;
 
-//generate at least 20 different team names
+//use this struct to generate at least 20 different team names
+//You can create team name by: pre + city
 struct team_names_generator {
 	vector<string> pre = {"Maccabi", "Happoel", "Elizoor", "Irony"};
 	vector<string> city = {"Tel Aviv", "Jerusalem", "Haipha", "Ariel", "Be'er Sheva"};
@@ -38,6 +39,7 @@ bool Team::operator< (const Team &other) const{
 	return (total_points < other.total_points);
 }
 
-ostream& operator <<(ostream& os, const Team& team) {
-	return os << team.name;
+ostream& ariel::operator <<(ostream& os, const Team& myTeam) {
+	return os << myTeam.name;
 }
+

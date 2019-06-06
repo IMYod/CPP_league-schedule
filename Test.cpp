@@ -1,16 +1,14 @@
 /**
- * A demo program for bull-pgia.
+ * A test program for league.
  * 
- * @author Erel Segal-Halevi
- * @since  2019-04
+ * @author Yoav Gross and Elad Nevi
+ * @since  2019-06
  */
 
 
 #include <iostream>
 #include<set>
 #include <map>
-using namespace std;
-
 #include "league.hpp"
 #include "schedule.hpp"
 #include "game.hpp"
@@ -18,6 +16,7 @@ using namespace std;
 #include "badkan.hpp"
 #define COMMA ,
 
+using namespace std;
 using namespace ariel;
 
 //return true if each team not played twice or more
@@ -32,8 +31,8 @@ bool is_valid_round(std::vector<game> &round) {
 	return (round.size() == teams_in_round.size());
 }
 
-//return true if played exactly (n-1)*2 games
-//n is the number of teams
+//return true if played exactly (n-1)*2 games in schedule
+//where n is the number of teams
 
 bool played_exact_games(schedule &sch) {
 	return ( (sch.all_teams.size()-1)*2 == sch.all_games.size());
@@ -70,6 +69,18 @@ bool is_all_played_against_all(schedule &sch) {
 				return false;
 
 	return true;
+}
+
+//basic test for top and bottom functions
+void test_top_and_bottom(badkan::TestCase &testcase, ariel::league &test_league, int size){
+	testcase.setname("Test top and bottom"); //you should change the name of testcase after calling to this function
+	auto up_half = test_league.top(size/2);
+	auto down_half = test_league.bottom(size/2);
+	for (Team up_team : up_half)
+		for (Team down_team : down_half){
+			testcase.CHECK_EQUAL(up_team.name != down_team.name, true)
+			.CHECK_EQUAL(up_team < down_team, false);
+		}
 }
 
 
@@ -221,7 +232,7 @@ int main() {
 	round5.push_back(game5_2);
 	test_league2.all_games.push_back(round5);
 
-	game game6_1{pair<Team&,int>(d_team,75), pair<Team&,int>(a_team,90)};
+	game game6_1{pair<Team&,int>(d_team,90), pair<Team&,int>(a_team,75)};
 	game game6_2{pair<Team&,int>(c_team,85), pair<Team&,int>(b_team,75)};
 	std::vector<game> round6;
 	round6.push_back(game6_1);
@@ -230,17 +241,15 @@ int main() {
 
 	testcase.CHECK_EQUAL(test_league2.longest_winnigs(), 3) //Team d in rounds 2-4
 	.CHECK_EQUAL(test_league2.longest_losses(), 3) //Team c in rounds 2-4
-	.CHECK_EQUAL(test_league2.count_positive(), 2); //Teams a,c
+	.CHECK_EQUAL(test_league2.count_positive(), 2); //Teams c,d
 
-	
+	test_top_and_bottom(testcase, test_league, size);
 
-	auto up_half2 = test_league2.top(size/2);
-	auto down_half2 = test_league2.bottom(size/2);
-	for (Team up_team : up_half2)
-		for (Team down_team : down_half2){
-			testcase.CHECK_EQUAL(up_team.name != down_team.name, true)
-			.CHECK_EQUAL(up_team < down_team, false);
-		}
+
+	//The tests above will run correctly after you fill some functions in league and schedule files
+
+	testcase.CHECK_EQUAL((*test_league2.top(1).begin()).name, d_team.name) // Team d in the first place
+	.CHECK_EQUAL((*test_league2.bottom(1).begin()).name, a_team.name); // Team d in the first place
 	
 		
  

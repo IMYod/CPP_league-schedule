@@ -1,12 +1,38 @@
-#include <iostream>
+/**
+ * A demo program for league.
+ * 
+ * @author Yoav Gross and Elad Nevi
+ * @since  2019-06
+ */
 
+#include <iostream>
 #include "league.hpp"
 #include "schedule.hpp"
 #include "game.hpp"
 #include "Team.hpp"
 
+
+//for compiling
+//Example of printing vector of teams.
+//You can write your function instead this
+std::ostream& operator<<(std::ostream& out, const std::vector<ariel::Team> & all_elements)
+{
+    out << "[";
+
+    for(auto element :  all_elements)
+    {
+        out <<  element << ", ";
+    }
+
+    out << "]" << std::endl;
+    return out;
+}
+
+
+
 using namespace ariel;
 using std::endl, std::cout;
+
 
 int main() {
 	
@@ -15,9 +41,9 @@ int main() {
 	ariel_league.create();
 	ariel_league.play();
 
-	/*cout << "The winner is " << ariel_league.top(1) << endl;
+	cout << "The winner is " << ariel_league.top(1) << endl;
 	cout << "This groups continued to the final four: " << ariel_league.top(4) << endl;
-	cout << "This groups have been relegated: " << ariel_league.bottom(2) << endl;*/
+	cout << "This groups have been relegated: " << ariel_league.bottom(2) << endl;
 
 	int longest_winnig = ariel_league.longest_winnigs();
 	cout << "The longest winnig streak was " << longest_winnig << endl;

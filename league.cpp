@@ -2,11 +2,12 @@
 #include <set>
 #include <iterator>
 
+
 using namespace ariel;
 using std::vector;
 
 void ariel::league::set_results_to_table(){
-	;//TODO
+	//TODO
 }
 
 /*
@@ -14,7 +15,7 @@ statistics functions
 */
 
 
-//for compiling
+/*for compiling*/
 vector<Team> league::top(uint num) const {
 	if (num > table.size())
 		return vector<Team>(table.begin(), table.end());
@@ -24,7 +25,7 @@ vector<Team> league::top(uint num) const {
 	return std::vector<Team>(table.begin(), it) ;
 }
 
-//for compiling
+/*for compiling*/
 vector<Team> league::bottom(uint num) const{
 	if (num > table.size())
 		return vector<Team>(table.begin(), table.end());

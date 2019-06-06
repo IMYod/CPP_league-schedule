@@ -10,28 +10,32 @@ namespace ariel{
 
 
 class league : public schedule{
+	
 	std::set<Team> table; //sorted by: 1. wins. 2. total points.
 
 	public:
 
-	league(uint number) : schedule(number) {;}
+	league(uint number)
+	: schedule(number) {;}
 
-	league(std::vector<ariel::Team>::iterator begin, std::vector<ariel::Team>::iterator end, uint another_teams=0):
-	schedule(begin, end, another_teams) {;}
+	league(std::vector<ariel::Team>::iterator begin, std::vector<ariel::Team>::iterator end, uint another_teams=0)
+	: schedule(begin, end, another_teams) {;}
 
 	void play() {
 		play_all_games();
 		set_results_to_table();
 	}
 
+	//After all games played, you should insert the results to table
 	void set_results_to_table();
 
-	int size() const {return number_of_teams;}
 	const std::set<Team>& _table() const {return table;}
 
 	/*
 	statistics functions
 	*/
+
+	//read about the functions above in ReadMe.pdf
 
 	std::vector<Team> top(uint) const;
 	std::vector<Team> bottom(uint) const;

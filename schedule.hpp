@@ -11,10 +11,13 @@ struct schedule{
 	std::vector<Team> all_teams;
 	std::vector<std::vector<game>> all_games;
 
+	//every team in schedule will created randomaly
 	schedule(uint number) : number_of_teams(number) {
 		insert_new_random_teams();
 	}
 
+	//some teams in schedule will not created randomaly
+	//another_teams is the number of teams that will created randomaly
 	schedule(std::vector<Team>::iterator begin, std::vector<Team>::iterator end, uint another_teams=0);
 
 	void insert_new_random_teams() {
@@ -30,8 +33,10 @@ struct schedule{
 	//	hint: https://en.wikipedia.org/wiki/Round-robin_tournament
 	void create();
 
+	//generate results for the games created in this schedule
 	void play_all_games();
-		
+
+	int size() const {return number_of_teams;}		
 };
 
 
